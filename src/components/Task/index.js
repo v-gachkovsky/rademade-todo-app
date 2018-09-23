@@ -102,12 +102,7 @@ export class Task extends PureComponent {
 
     return (
       <FormControlLabel
-        control={
-          <Checkbox
-            color="primary"
-            checked={ task.status }
-            onChange={ this.toggleStatus }
-          />
+        control={ <Checkbox color="primary" checked={ task.status } onChange={ this.toggleStatus } />
         }
         label={ task.title }
       />
