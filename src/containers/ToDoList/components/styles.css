@@ -1,0 +1,10 @@
+.ToDoListPaper {
+  padding: 20px 20px 30px; }
+
+.tasksListItem {
+  list-style: none; }
+
+.SearchFieldContainer,
+.TaskCreatorContainer {
+  width: 100%;
+  text-align: center; }

@@ -4,12 +4,14 @@ import ToDoList from './containers/ToDoList';
 import './App.css';
 
 export const App = () => (
-  <div className="App">
-    <h1>
-      Rademade ToDo App
-    </h1>
+  <div className="Container">
+    <div className="App">
+      <h1>
+        Rademade ToDo App
+      </h1>
 
-    <ToDoList />
+      <ToDoList />
+    </div>
   </div>
 );
 

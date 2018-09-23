@@ -7,7 +7,7 @@ import {
   CREATE_TASK_FAILURE
 } from './actionTypes';
 
-const initialState = {
+export const initialState = {
   tasks: [],
   loading: false,
   status: null
