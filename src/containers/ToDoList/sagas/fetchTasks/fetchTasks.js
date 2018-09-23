@@ -4,12 +4,12 @@ import { fetchTasksSuccess, fetchTasksFailure } from '../../actions';
 
 const status = { isError: true, message: "Can't load tasks. Please try again later" };
 
-export default function* fetchingTasks() {
+export default function * fetchingTasks() {
   try {
     const tasksObject = yield call(rsf.database.read, '/tasks');
 
     if (!tasksObject) {
-      yield put(fetchTasksFailure(null, status));
+      yield put(fetchTasksSuccess([]));
       return;
     }
 

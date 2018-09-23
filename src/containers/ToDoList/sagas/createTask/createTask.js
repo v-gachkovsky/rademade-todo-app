@@ -4,7 +4,7 @@ import { fetchTasks, createTaskSuccess, createTaskFailure } from '../../actions'
 
 const status = { isError: true, message: "Can't create task. Please try again later" };
 
-export default function* creatingTask(action) {
+export default function * creatingTask(action) {
   const { payload: title } = action;
 
   const dataForNewTask = {

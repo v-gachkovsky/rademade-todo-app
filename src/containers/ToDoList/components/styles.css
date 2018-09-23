@@ -8,3 +8,8 @@
 .TaskCreatorContainer {
   width: 100%;
   text-align: center; }
+
+.emptyListMessage {
+  font-size: 20px;
+  color: #7f7f7f;
+  line-height: 1.6; }

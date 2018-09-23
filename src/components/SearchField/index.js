@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 
 export const SearchField = props => {
-  const { isLoading, width } = props;
+  const { searchPattern, changeSearchPattern, isLoading, width } = props;
 
   return (
     <Fragment>
@@ -11,6 +11,8 @@ export const SearchField = props => {
         style={ { width: width } }
         color="primary"
         label="Search..."
+        value={ searchPattern }
+        onChange={ changeSearchPattern }
         disabled={ isLoading }
       />
     </Fragment>
@@ -19,7 +21,9 @@ export const SearchField = props => {
 
 SearchField.propTypes = {
   isLoading: PropTypes.bool.isRequired,
-  width: PropTypes.number.isRequired
+  width: PropTypes.number.isRequired,
+  searchPattern: PropTypes.string.isRequired,
+  changeSearchPattern: PropTypes.func.isRequired
 };
 
 export default SearchField;
