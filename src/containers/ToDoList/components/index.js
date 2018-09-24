@@ -79,20 +79,20 @@ export class ToDoList extends Component {
 
   handleUpdateTask = id => updateObject => {
     const { updateTask } = this.props;
-    const { tasks, searchPattern } = this.state;
+    // const { tasks, searchPattern } = this.state;
 
     updateTask({ id, updateObject: { ...updateObject } });
 
-    const updatedTask = tasks.map(task => {
-      return task.id === id
-        ? { ...task, ...updateObject }
-        : task;
-    });
-
-    this.setState({
-      tasks: updatedTask,
-      filteredTasks: search(updatedTask, searchPattern)
-    });
+    // const updatedTask = tasks.map(task => {
+    //   return task.id === id
+    //     ? { ...task, ...updateObject }
+    //     : task;
+    // });
+    //
+    // this.setState({
+    //   tasks: updatedTask,
+    //   filteredTasks: search(updatedTask, searchPattern)
+    // });
   };
 
   handleCreateTask = title => {

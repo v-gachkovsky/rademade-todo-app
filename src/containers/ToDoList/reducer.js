@@ -5,7 +5,11 @@ import {
 
   CREATE_TASK_REQUEST,
   CREATE_TASK_SUCCESS,
-  CREATE_TASK_FAILURE
+  CREATE_TASK_FAILURE,
+
+  UPDATE_TASK_REQUEST,
+  UPDATE_TASK_SUCCESS,
+  UPDATE_TASK_FAILURE
 } from './actionTypes';
 
 export const initialState = {
@@ -20,6 +24,7 @@ function reducer(state = initialState, action) {
   switch (type) {
     case FETCH_TASKS_REQUEST:
     case CREATE_TASK_REQUEST:
+    case UPDATE_TASK_REQUEST:
       return {
         ...state,
         loading: true,
@@ -41,8 +46,23 @@ function reducer(state = initialState, action) {
         status: null
       };
 
+    case UPDATE_TASK_SUCCESS:
+      return {
+        ...state,
+        tasks: state.tasks.map(task => {
+          if (task.id === payload.id) {
+            return payload;
+          }
+
+          return task;
+        }),
+        loading: false,
+        status: null
+      };
+
     case FETCH_TASKS_FAILURE:
     case CREATE_TASK_FAILURE:
+    case UPDATE_TASK_FAILURE:
       return {
         ...state,
         loading: false,
