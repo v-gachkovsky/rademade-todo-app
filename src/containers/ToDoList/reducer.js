@@ -9,7 +9,11 @@ import {
 
   UPDATE_TASK_REQUEST,
   UPDATE_TASK_SUCCESS,
-  UPDATE_TASK_FAILURE
+  UPDATE_TASK_FAILURE,
+
+  DELETE_TASK_REQUEST,
+  DELETE_TASK_SUCCESS,
+  DELETE_TASK_FAILURE
 } from './actionTypes';
 
 export const initialState = {
@@ -25,6 +29,7 @@ function reducer(state = initialState, action) {
     case FETCH_TASKS_REQUEST:
     case CREATE_TASK_REQUEST:
     case UPDATE_TASK_REQUEST:
+    case DELETE_TASK_REQUEST:
       return {
         ...state,
         loading: true,
@@ -38,6 +43,7 @@ function reducer(state = initialState, action) {
         loading: false,
         status: null
       };
+
     case CREATE_TASK_SUCCESS:
       return {
         ...state,
@@ -49,13 +55,18 @@ function reducer(state = initialState, action) {
     case UPDATE_TASK_SUCCESS:
       return {
         ...state,
-        tasks: state.tasks.map(task => {
-          if (task.id === payload.id) {
-            return payload;
-          }
+        tasks: state.tasks.map(task => task.id === payload.id
+          ? payload
+          : task
+        ),
+        loading: false,
+        status: null
+      };
 
-          return task;
-        }),
+    case DELETE_TASK_SUCCESS:
+      return {
+        ...state,
+        tasks: state.tasks.filter(task => task.id !== payload),
         loading: false,
         status: null
       };
@@ -63,6 +74,7 @@ function reducer(state = initialState, action) {
     case FETCH_TASKS_FAILURE:
     case CREATE_TASK_FAILURE:
     case UPDATE_TASK_FAILURE:
+    case DELETE_TASK_FAILURE:
       return {
         ...state,
         loading: false,
