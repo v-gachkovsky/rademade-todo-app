@@ -4,7 +4,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import './styles.css';
 
-export const LoadableComponent = props => {
+const LoadableComponent = props => {
   const { isLoading, children } = props;
 
   if (!isLoading) return children;

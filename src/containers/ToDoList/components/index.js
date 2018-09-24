@@ -19,7 +19,7 @@ import { search } from '../../../utils/taskSearcher';
 
 import './styles.css';
 
-export class ToDoList extends Component {
+class ToDoList extends Component {
   state = {
     tasks: [],
     filteredTasks: [],
@@ -94,7 +94,7 @@ export class ToDoList extends Component {
 
   render() {
     const { loading, status } = this.props;
-    const { filteredTasks: tasks, sortDirection, searchPattern } = this.state;
+    const { filteredTasks, tasks, sortDirection, searchPattern } = this.state;
 
     if (status) return (
       <div>
@@ -124,7 +124,12 @@ export class ToDoList extends Component {
                   You have got an empty tasks list. Do you want to create a new one?
                 </span>
               ) }
-              { tasks.length > 0 && tasks.map(task => (
+              { filteredTasks.length === 0 && (
+                <span className="emptyListMessage">
+                  No tasks found.
+                </span>
+              ) }
+              { filteredTasks.length > 0 && filteredTasks.map(task => (
                 <li className="tasksListItem" key={ task.id }>
                   <Task
                     task={ task }

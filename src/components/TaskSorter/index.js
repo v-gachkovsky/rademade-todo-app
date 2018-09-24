@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 
 import './styles.css';
 
-export const TaskSorter = props => {
+const TaskSorter = props => {
   const { sortDirection, changeSortDirection } = props;
 
   const buttonTitle = sortDirection === 'ASC'

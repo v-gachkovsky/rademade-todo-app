@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 
-export const SearchField = props => {
+const SearchField = props => {
   const { searchPattern, changeSearchPattern, isLoading, width } = props;
 
   return (

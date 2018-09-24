@@ -13,7 +13,7 @@ function Transition(props) {
   return <Slide direction="up" { ...props } />;
 }
 
-export const ConfirmationDialog = props => {
+const ConfirmationDialog = props => {
   const {
     open,
     title,

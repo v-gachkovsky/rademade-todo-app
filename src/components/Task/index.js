@@ -14,7 +14,7 @@ import ConfirmationDialog from '../ConfirmationDialog';
 
 import './styles.css';
 
-export class Task extends PureComponent {
+class Task extends PureComponent {
   state = {
     deleteConfirmationOpen: false,
     nextTaskTitle: '',
