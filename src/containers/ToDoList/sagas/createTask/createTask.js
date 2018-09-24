@@ -21,11 +21,7 @@ export default function * creatingTask(action) {
       return;
     }
 
-    const newTask = {
-      id,
-      ...dataForNewTask
-    };
-
+    const newTask = { id, ...dataForNewTask };
     yield put(createTaskSuccess(newTask));
 
     yield put(fetchTasks());
