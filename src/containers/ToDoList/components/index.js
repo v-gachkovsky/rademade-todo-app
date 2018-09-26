@@ -32,10 +32,8 @@ class ToDoList extends Component {
     if (prevState.prevTasks !== nextProps.tasks) {
       return {
         tasks: nextProps.tasks,
-        filteredTasks: nextProps.tasks,
-        prevTasks: nextProps.tasks,
-        sortDirection: 'ASC',
-        searchPattern: ''
+        filteredTasks: search(sortTasksByStatus(nextProps.tasks, prevState.sortDirection), prevState.searchPattern),
+        prevTasks: nextProps.tasks
       };
     }
     return null;
@@ -92,9 +90,39 @@ class ToDoList extends Component {
     deleteTask(id);
   };
 
+  renderTasks() {
+    const { tasks, filteredTasks } = this.state;
+
+    if (tasks.length === 0) {
+      return (
+        <span className="emptyListMessage">
+          You have got an empty tasks list. Do you want to create a new one?
+        </span>
+      );
+    }
+
+    if (filteredTasks.length === 0) {
+      return (
+        <span className="emptyListMessage">
+          No tasks found.
+        </span>
+      );
+    }
+
+    return filteredTasks.map(task => (
+      <li className="tasksListItem" key={ task.id }>
+        <Task
+          task={ task }
+          onUpdateTask={ this.handleUpdateTask(task.id) }
+          onDeleteTask={ this.handleDeleteTask(task.id) }
+        />
+      </li>
+    ));
+  }
+
   render() {
     const { loading, status } = this.props;
-    const { filteredTasks, tasks, sortDirection, searchPattern } = this.state;
+    const { sortDirection, searchPattern } = this.state;
 
     if (status) return (
       <div>
@@ -119,25 +147,7 @@ class ToDoList extends Component {
         <div>
           <LoadableComponent isLoading={ loading }>
             <ul>
-              { tasks.length === 0 && (
-                <span className="emptyListMessage">
-                  You have got an empty tasks list. Do you want to create a new one?
-                </span>
-              ) }
-              { filteredTasks.length === 0 && (
-                <span className="emptyListMessage">
-                  No tasks found.
-                </span>
-              ) }
-              { filteredTasks.length > 0 && filteredTasks.map(task => (
-                <li className="tasksListItem" key={ task.id }>
-                  <Task
-                    task={ task }
-                    onUpdateTask={ this.handleUpdateTask(task.id) }
-                    onDeleteTask={ this.handleDeleteTask(task.id) }
-                  />
-                </li>
-              )) }
+              { this.renderTasks() }
             </ul>
           </LoadableComponent>
         </div>
