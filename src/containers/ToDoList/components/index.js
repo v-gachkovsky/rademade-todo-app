@@ -31,8 +31,8 @@ class ToDoList extends Component {
   static getDerivedStateFromProps(nextProps, prevState) {
     if (prevState.prevTasks !== nextProps.tasks) {
       return {
-        tasks: sortTasksByStatus(nextProps.tasks),
-        filteredTasks: search(nextProps.tasks, ''),
+        tasks: nextProps.tasks,
+        filteredTasks: nextProps.tasks,
         prevTasks: nextProps.tasks,
         sortDirection: 'ASC',
         searchPattern: ''

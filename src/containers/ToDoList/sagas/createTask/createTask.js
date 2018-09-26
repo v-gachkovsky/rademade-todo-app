@@ -1,6 +1,6 @@
 import { call, put } from 'redux-saga/effects';
 import rsf from '../../../../firebase';
-import { fetchTasks, createTaskSuccess, createTaskFailure } from '../../actions';
+import { createTaskSuccess, createTaskFailure } from '../../actions';
 
 const status = { isError: true, message: "Can't create task. Please try again later" };
 
@@ -23,8 +23,6 @@ export default function * creatingTask(action) {
 
     const newTask = { id, ...dataForNewTask };
     yield put(createTaskSuccess(newTask));
-
-    yield put(fetchTasks());
   } catch (error) {
     yield put(createTaskFailure(null, status));
   }

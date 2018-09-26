@@ -27,12 +27,17 @@ function reducer(state = initialState, action) {
 
   switch (type) {
     case FETCH_TASKS_REQUEST:
-    case CREATE_TASK_REQUEST:
-    case UPDATE_TASK_REQUEST:
-    case DELETE_TASK_REQUEST:
       return {
         ...state,
         loading: true,
+        status: null
+      };
+
+    case CREATE_TASK_REQUEST:
+    case DELETE_TASK_REQUEST:
+    case UPDATE_TASK_REQUEST:
+      return {
+        ...state,
         status: null
       };
 
