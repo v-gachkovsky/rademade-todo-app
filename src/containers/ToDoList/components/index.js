@@ -75,7 +75,7 @@ class ToDoList extends Component {
     });
   };
 
-  handleUpdateTask = id => updateObject => {
+  handleUpdateTask = (id, updateObject) => {
     const { updateTask } = this.props;
     updateTask({ id, updateObject: { ...updateObject } });
   };
@@ -85,7 +85,7 @@ class ToDoList extends Component {
     createTask(title);
   };
 
-  handleDeleteTask = id => () => {
+  handleDeleteTask = id => {
     const { deleteTask } = this.props;
     deleteTask(id);
   };
@@ -113,8 +113,8 @@ class ToDoList extends Component {
       <li className="tasksListItem" key={ task.id }>
         <Task
           task={ task }
-          onUpdateTask={ this.handleUpdateTask(task.id) }
-          onDeleteTask={ this.handleDeleteTask(task.id) }
+          onUpdateTask={ this.handleUpdateTask }
+          onDeleteTask={ this.handleDeleteTask }
         />
       </li>
     ));

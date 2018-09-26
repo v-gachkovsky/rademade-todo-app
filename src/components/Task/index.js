@@ -40,7 +40,8 @@ class Task extends PureComponent {
     const updatedTask = { ...task, status: e.target.checked };
     delete updatedTask.id;
 
-    onUpdateTask(updatedTask);
+    const { id } = task;
+    onUpdateTask(id, updatedTask);
   };
 
   renameTitle = () => {
@@ -57,7 +58,9 @@ class Task extends PureComponent {
     const updatedTask = { ...task, title };
     delete updatedTask.id;
 
-    onUpdateTask(updatedTask);
+    const { id } = task;
+    onUpdateTask(id, updatedTask);
+
     this.disableEditMode();
   };
 

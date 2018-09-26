@@ -7,8 +7,6 @@ const status = { isError: true, message: "Can't update task. Please try again la
 export default function * updatingTasks(action) {
   const { payload: { id, updateObject } }  = action;
 
-  console.log('updateObject', updateObject);
-
   try {
     yield call(rsf.database.update, `/tasks/${id}`, updateObject);
 
