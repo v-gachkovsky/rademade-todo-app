@@ -1,12 +1,2 @@
-.taskControls,
-.taskEditControls {
-  display: inline-block; }
-
-.task .taskControls {
-  visibility: hidden; }
-
-.task:hover .taskControls {
-  visibility: visible; }
-
 .taskTitleEditField {
   width: 300px; }

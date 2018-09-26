@@ -3,13 +3,9 @@ import PropTypes from 'prop-types';
 
 import Checkbox from '@material-ui/core/Checkbox';
 import TextField from '@material-ui/core/TextField';
-import IconButton from '@material-ui/core/IconButton';
-import ApplyIcon from '@material-ui/icons/Done';
-import CancelIcon from '@material-ui/icons/Cancel';
-import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
+import TaskControls from '../TaskControls';
 import ConfirmationDialog from '../ConfirmationDialog';
 
 import './styles.css';
@@ -112,57 +108,22 @@ class Task extends PureComponent {
     );
   }
 
-  renderTaskControl() {
-    const { underEditing } = this.state;
-
-    if (underEditing) {
-      return (
-        <div className="taskEditControls">
-          <IconButton
-            color="primary"
-            onClick={ this.renameTitle }
-          >
-            <ApplyIcon fontSize="small" />
-          </IconButton>
-
-          <IconButton
-            color="secondary"
-            onClick={ this.disableEditMode }
-          >
-            <CancelIcon fontSize="small" />
-          </IconButton>
-        </div>
-      );
-    }
-
-    return (
-      <div className="taskControls">
-        <IconButton
-          color="primary"
-          onClick={ this.enableEditMode }
-        >
-          <EditIcon fontSize="small" />
-        </IconButton>
-
-        <IconButton
-          color="secondary"
-          onClick={ this.handleClickOpen }
-        >
-          <DeleteIcon fontSize="small" />
-        </IconButton>
-      </div>
-    );
-  }
-
   render() {
     const { task } = this.props;
-    const { deleteConfirmationOpen } = this.state;
+    const { deleteConfirmationOpen, underEditing } = this.state;
 
     const deleteConfirmationMessage = `Are you sure do you want to delete task "${task.title}"?`;
     return (
       <div className="task">
         { this.renderTask() }
-        { this.renderTaskControl() }
+
+        <TaskControls
+          underEditing={ underEditing }
+          enableEditMode={ this.enableEditMode }
+          disableEditMode={ this.disableEditMode }
+          renameTitle={ this.renameTitle }
+          deleteTask={ this.handleClickOpen }
+        />
 
         <ConfirmationDialog
           open={ deleteConfirmationOpen }
