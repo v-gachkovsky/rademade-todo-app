@@ -7,8 +7,6 @@ import CancelIcon from '@material-ui/icons/Cancel';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-import './styles.css';
-
 const TaskControls = props => {
   const {
     underEditing,
